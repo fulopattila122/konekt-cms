@@ -1,0 +1,111 @@
+detect_relations: true
+options:
+  type: INNODB
+  collate: utf8_hungarian_ci
+  charset: utf8
+
+Productgroup:
+   columns:
+      Name:
+         type: string(100)
+      Slug:
+         type: string(100)
+   actAs:
+      Timestampable:
+      I18n:
+         fields: [Name, Slug]
+
+Productcategory:
+   columns:
+      Name:
+         type: string(100)
+      Slug:
+         type: string(100)
+      Productgroup_id:
+         type: integer
+      Rank:
+         type: integer
+   actAs:
+      Timestampable:
+      I18n:
+         fields: [Name, Slug]
+   relations:
+      Productgroup:
+         local: Productgroup_id
+         foreign: id
+         foreignAlias: Productcategories
+
+Product:
+   columns:
+      Name:
+         type: string(128)
+      Slug:
+         type: string(128)
+      Shortdescription:
+         type: string(511)
+      Details:
+         type: clob
+      Productcategory_id:
+         type: integer
+      Image_id:
+         type: integer
+   indexes:
+      Productcategory_id_index:
+         fields: [Productcategory_id]
+   actAs:
+      Timestampable:
+      I18n:
+         fields: [Name, Shortdescription, Details, Slug]
+      Versionable:
+         versionColumn: Version
+         className: %CLASS%Version
+         auditLog: true
+      Searchable:
+         fields: [Name, Shortdescription, Details]
+   relations:
+      Productcategory:
+         local: Productcategory_id
+         foreign: id
+         foreignAlias: Products
+      Image:
+         local: Image_id
+         foreign: id
+
+Productprice:
+   columns:
+      Product_id:
+         type: integer
+      Country_id:
+         type: integer
+      Currency_id:
+         type: integer
+      Price:
+         type: integer
+      Validfrom:
+         type: datetime
+      Validuntil:
+         type: datetime
+   actAs:
+      Timestampable:
+   relations:
+      Product:
+         local: Product_id
+         foreign: id
+         foreignAlias: Prices
+      Country:
+         local: Country_id
+         foreign: id
+      Currency:
+         local: Currency_id
+         foreign: id
+
+
+#EntityImage:
+
+#ProductImage:
+#   inheritance:
+#      extends: EntityImage
+#     type: column_aggregation
+#      keyField: Entity
+#      keyValue: Product
+

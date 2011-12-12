@@ -1,0 +1,24 @@
+detect_relations: true
+options:
+  type: INNODB
+  collate: utf8_hungarian_ci
+  charset: utf8
+  
+Comment:
+   columns:
+      Parent_id: integer
+      Entity: string(100)
+      User_id: integer
+      Name: string(255)
+      Email: string(255)
+      Content: clob
+      Onhold: boolean
+   indexes:
+      Entity_Parent_id_index:
+         fields: [Entity, Parent_id]
+#      Content_index:
+#         fields: [Name, Content]
+#         type: fulltext
+   actAs:
+      Timestampable:
+

@@ -1,0 +1,89 @@
+#detect_relations: true
+options:
+  type: INNODB
+  collate: utf8_hungarian_ci
+  charset: utf8
+
+Blog:
+   columns:
+      Name:
+         type: string(128)
+      Naviname:
+         type: string(128)
+      Language_id:
+         type: integer
+   actAs:
+      Timestampable:
+      Sluggable:
+         unique: true
+         fields: [Name]
+         canUpdate: true
+         builder: ['Konekt_Blog_Model_Inflector','urlize']
+   relations:
+      Language:
+         local: Language_id
+         foreign: id
+         foreignAlias: Blogs
+
+BlogpostStatus:
+   columns:
+      Name: string(128)
+
+Blogpost:
+   columns:
+      Title:
+         type: string(255)
+      Blog_id:
+         type: integer
+      User_id:
+         type: integer
+      BlogpostStatus_id:
+         type: integer
+      Publishdate:
+         type: timestamp
+      Showauthor:
+         type: boolean
+      Commentsallowed:
+         type: boolean
+      Menu:
+         type: integer
+      Content:
+         type: clob      
+   indexes:
+      Slug_unique_index:
+         fields: [Blog_id, Slug]
+         type: unique
+   actAs:
+      Timestampable:
+      Sluggable:
+         unique: true
+         fields: [Title]
+         canUpdate: true
+         builder: ['Konekt_Blog_Model_Inflector','urlize']
+      Versionable:
+         versionColumn: Version
+         className: %CLASS%Version
+         auditLog: true
+   relations:
+      BlogpostStatus:
+         local: BlogpostStatus_id
+         foreign: id
+         foreignAlias: Blogpost
+      Blog:
+         local: Blog_id
+         foreign: id
+         foreignAlias: Blogpost
+      User:
+         local: User_id
+         foreign: id
+         foreignAlias: Blogpost
+
+Comment:
+
+BlogpostComment:
+   inheritance:
+      extends: Comment
+      type: column_aggregation
+      keyField: Entity
+      keyValue: Blogpost
+

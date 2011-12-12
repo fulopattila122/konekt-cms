@@ -1,0 +1,39 @@
+detect_relations: true
+options:
+  type: INNODB
+  collate: utf8_hungarian_ci
+  charset: utf8
+
+User:
+   columns:
+      Email:
+         type: string(255)
+      Password:
+         type: string(511)
+      Firstname:
+         type: string(100)
+      Lastname:
+         type: string(100)
+      Salutation:
+         type: string(50)
+      Openid:
+         type: string(255)
+   indexes:
+      Email_index:
+         fields: [Email]
+         type: unique
+         
+Role:
+   columns:
+      Name:
+         type: string(255)
+
+UserRole:
+   columns:
+      User_id:
+         type: integer
+         primary: true
+      Role_id:
+         type: integer
+         primary: true
+

@@ -1,0 +1,10 @@
+# Default data to load to the database
+
+BlogpostStatus:
+  bps_draft:
+    Name: Draft
+  bps_active:
+    Name: Active
+  bps_archived:
+    Name: Archived
+

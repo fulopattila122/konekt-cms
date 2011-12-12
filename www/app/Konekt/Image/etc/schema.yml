@@ -1,0 +1,62 @@
+detect_relations: true
+options:
+  type: INNODB
+  collate: utf8_hungarian_ci
+  charset: utf8
+
+Image:
+   columns:
+      Filename:
+         type: string(255)
+      ThumbnailFilename:
+         type: string(255)
+      Rank:
+         type: integer
+      Title:
+         type: string(192)
+      Description:
+         type: clob
+   actAs:
+      Timestampable:
+
+ImageEntityProperties:
+   columns:
+      Entityname:
+         type: string(255)
+      Groupname:
+         type: string(50)
+      Mainwidthfull:
+         type: integer
+      Mainheightfull:
+         type: integer
+      Mainwidththumbnail:
+         type: integer
+      Mainheightthumbnail:
+         type: integer
+      Widthfull:
+         type: integer
+      Heightfull:
+         type: integer
+      Widththumbnail:
+         type: integer
+      Heightthumbnail:
+         type: integer
+
+EntityImage:
+   columns:
+      Entity: string(100)
+      Entity_id:
+         type: integer
+      Image_id:
+         type: integer
+   indexes:
+      Entity_Entity_id_index:
+         fields: [Entity, Entity_id]
+      Image_id_index:
+         fields: [Image_id]
+   relations:
+      Image:
+         local: Image_id
+         foreign: id
+      
+
