@@ -26,12 +26,11 @@ core:
       Konekt_Blog:
       Konekt_Image:
       Konekt_Catalog:
-      Artkonekt_Delikates:
    db:
       host: localhost
-      database: delides
-      username: delikates
-      password: S3x0nTh3B34ch
+      database: dbname
+      username: username
+      password: passwd
       type: mysql
 konekt:
    image:
@@ -40,8 +39,4 @@ konekt:
       defaultHeight: 550
       defaultThumbnailWidth: 170
       defaultThumbnailHeight: 128
-artkonekt:
-   delikates:
-      blogs:
-         hu: 1
-         ro: 2 
+
