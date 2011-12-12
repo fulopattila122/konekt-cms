@@ -74,6 +74,13 @@ class Konekt_Core_Model_App{
    protected $_language;
    
    /**
+    * The Visitor Class Instance
+    *
+    * @var Konekt_Core_Model_Visitor
+    */
+   protected $_visitor = NULL;
+   
+   /**
     *
     * @var Doctrine_Manager
     */
@@ -372,6 +379,24 @@ class Konekt_Core_Model_App{
    {
       $this->_language = $langCode;
       return $this;
+   }
+   
+   /**
+    * Returns the Visitor Object, if exists. For non web-based applications returns NULL
+    *
+    * @return Konekt_Core_Model_Visistor
+    */
+   public function getVisitor()
+   {
+      if (!$this->_visitor)
+      {
+         if (!$this->runningFromCli())
+         {
+            $this->_visitor = new Konekt_Core_Model_Visitor();
+         }
+      }
+      
+      return $this->_visitor;
    }
 
 }
