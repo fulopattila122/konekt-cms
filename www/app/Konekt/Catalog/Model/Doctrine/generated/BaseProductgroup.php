@@ -7,6 +7,7 @@
  * 
  * @property string $Name
  * @property string $Slug
+ * @property integer $Rank
  * @property Doctrine_Collection $Productcategories
  * 
  * @package    ##PACKAGE##
@@ -26,6 +27,9 @@ abstract class BaseProductgroup extends Doctrine_Record
         $this->hasColumn('Slug', 'string', 100, array(
              'type' => 'string',
              'length' => '100',
+             ));
+        $this->hasColumn('Rank', 'integer', null, array(
+             'type' => 'integer',
              ));
 
         $this->option('type', 'INNODB');

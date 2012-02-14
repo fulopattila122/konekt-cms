@@ -82,24 +82,17 @@ class Konekt_Image_Model_Image
     */
    public function getResizeDimensions($entity, $group = NULL)
    {
-      if (empty($group))
-      {
-         $result = Doctrine_Core::getTable('ImageEntityProperties')
-            ->findOneByEntityname($entity);
-         $result = $result ? $result->toArray() : NULL;
-      }
-      else
-      {
-         $result = Doctrine_Query::create()
+      $groupcondition = empty($group) ? 'IS NULL' : "= \"$group\"";
+      
+      $result = Doctrine_Query::create()
                       ->select('*')
                       ->from('ImageEntityProperties p')
                       ->where("p.Entityname = \"$entity\"")
-                      ->andWhere("p.Groupname = \"$group\"")
+                      ->andWhere("p.Groupname $groupcondition")
                       ->execute()
                       ->toArray();
-      }
       /* Fall back to defaults in the configuration if none was stored in the db */
-      if (empty($result))
+      if (!isset($result[0]) || empty($result[0]))
       {
          $result = array();
          $result['Mainwidthfull']       = (int) Konekt::app()->getConfigValue('konekt/image/defaultWidth');
@@ -109,10 +102,14 @@ class Konekt_Image_Model_Image
          $result['Widthfull']           = $result['Mainwidthfull'];
          $result['Heightfull']          = $result['Mainheightfull'];
          $result['Widththumbnail']      = $result['Mainwidththumbnail'];
-         $result['Heightthumbnail']     = $result['Mainheightfull'];
+         $result['Heightthumbnail']     = $result['Mainheightthumbnail'];
+      }
+      else
+      {
+         $result = $result[0];
       }
       
-      return $result;
+      return $result;      
    }
    
    /**

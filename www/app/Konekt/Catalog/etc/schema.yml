@@ -10,6 +10,8 @@ Productgroup:
          type: string(100)
       Slug:
          type: string(100)
+      Rank:
+         type: integer
    actAs:
       Timestampable:
       I18n:
@@ -25,6 +27,8 @@ Productcategory:
          type: integer
       Rank:
          type: integer
+      Imagegroupname:
+         type: string(50)
    actAs:
       Timestampable:
       I18n:
@@ -45,6 +49,8 @@ Product:
          type: string(511)
       Details:
          type: clob
+      Rank:
+         type: integer
       Productcategory_id:
          type: integer
       Image_id:

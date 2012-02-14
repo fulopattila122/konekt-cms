@@ -11,7 +11,7 @@ class Konekt_Install_Model_Install
    const SCHEMA_FILE    = 'schema.yml';
    const FIXTURE_FILE   = 'data.yml';
 
-   public function installModule($moduleName)
+   public function installModule($moduleName, $skipDbOperations = false)
    {
       try
       {
@@ -24,11 +24,12 @@ class Konekt_Install_Model_Install
          {
             Doctrine_Core::generateModelsFromYaml($confDir . DS . self::SCHEMA_FILE,
                $modelsDir);
-            Doctrine_Core::createTablesFromModels($modelsDir);
+            if (!$skipDbOperations)
+               Doctrine_Core::createTablesFromModels($modelsDir);
          }
          
          /* Install Initial Data fixtures */
-         if (file_exists($confDir . DS . self::FIXTURE_FILE))
+         if (!$skipDbOperations && file_exists($confDir . DS . self::FIXTURE_FILE))
          {
             Konekt::app()->connection->exec('set names utf8');
             Doctrine_Core::loadData($confDir . DS . self::FIXTURE_FILE);

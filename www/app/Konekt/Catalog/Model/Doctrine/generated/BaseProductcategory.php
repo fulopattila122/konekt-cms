@@ -9,6 +9,7 @@
  * @property string $Slug
  * @property integer $Productgroup_id
  * @property integer $Rank
+ * @property string $Imagegroupname
  * @property Productgroup $Productgroup
  * @property Doctrine_Collection $Products
  * 
@@ -35,6 +36,10 @@ abstract class BaseProductcategory extends Doctrine_Record
              ));
         $this->hasColumn('Rank', 'integer', null, array(
              'type' => 'integer',
+             ));
+        $this->hasColumn('Imagegroupname', 'string', 50, array(
+             'type' => 'string',
+             'length' => '50',
              ));
 
         $this->option('type', 'INNODB');

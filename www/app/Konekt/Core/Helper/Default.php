@@ -239,5 +239,23 @@ class Konekt_Core_Helper_Default extends Konekt_Core_Helper_Abstract{
       return Konekt::registry("core_country_$code");
    }
    
+   function getDomainRootUrl()
+   {
+      $pageURL = 'http';
+      if ($_SERVER["HTTPS"] == "on") {
+        $pageURL .= "s";
+      }
+      $pageURL .= "://" . $_SERVER["SERVER_NAME"];
+      
+      if ($_SERVER["SERVER_PORT"] != "80") {
+        $pageURL .= ":".$_SERVER["SERVER_PORT"];
+      }
+      return $pageURL;
+   }
+   
+   function currentPageUrl()
+   {
+      return $this->getDomainRootUrl() . $_SERVER["REQUEST_URI"];    
+   }  
    
 }

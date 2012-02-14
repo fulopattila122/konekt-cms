@@ -9,6 +9,7 @@
  * @property string $Slug
  * @property string $Shortdescription
  * @property clob $Details
+ * @property integer $Rank
  * @property integer $Productcategory_id
  * @property integer $Image_id
  * @property Productcategory $Productcategory
@@ -38,6 +39,9 @@ abstract class BaseProduct extends Doctrine_Record
              ));
         $this->hasColumn('Details', 'clob', null, array(
              'type' => 'clob',
+             ));
+        $this->hasColumn('Rank', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('Productcategory_id', 'integer', null, array(
              'type' => 'integer',
