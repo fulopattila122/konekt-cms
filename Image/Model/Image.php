@@ -30,7 +30,7 @@ class Konektsite_Image_Model_Image
     */
    protected function _getEntityDirectory($entityName, $group)
    {
-      $imgdir = Konekt::app()->getConfigValue('konektsite/image/directory');
+      $imgdir = Konekt::app()->getConfigValue('konekt/cms/image/directory');
       $imgdir = Konekt::helper('core')->ensurePath($imgdir, true, true)
                . lcfirst($entityName);
       $imgdir .= empty($group) ? '' : (DS . lcfirst($group));
@@ -108,10 +108,10 @@ class Konektsite_Image_Model_Image
       if (!isset($result[0]) || empty($result[0]))
       {
          $result = array();
-         $result['Mainwidthfull']       = (int) Konekt::app()->getConfigValue('konektsite/image/defaultWidth');
-         $result['Mainheightfull']      = (int) Konekt::app()->getConfigValue('konektsite/image/defaultHeight');
-         $result['Mainwidththumbnail']  = (int) Konekt::app()->getConfigValue('konektsite/image/defaultThumbnailWidth');
-         $result['Mainheightthumbnail'] = (int) Konekt::app()->getConfigValue('konektsite/image/defaultThumbnailHeight');
+         $result['Mainwidthfull']       = (int) Konekt::app()->getConfigValue('konekt/cms/image/defaultWidth');
+         $result['Mainheightfull']      = (int) Konekt::app()->getConfigValue('konekt/cms/image/defaultHeight');
+         $result['Mainwidththumbnail']  = (int) Konekt::app()->getConfigValue('konekt/cms/image/defaultThumbnailWidth');
+         $result['Mainheightthumbnail'] = (int) Konekt::app()->getConfigValue('konekt/cms/image/defaultThumbnailHeight');
          $result['Widthfull']           = $result['Mainwidthfull'];
          $result['Heightfull']          = $result['Mainheightfull'];
          $result['Widththumbnail']      = $result['Mainwidththumbnail'];
@@ -159,6 +159,7 @@ class Konektsite_Image_Model_Image
     */
    protected function _getTimThumbUrl()
    {
+      /** TODO: fix this: It definitely doesn't work with the new layout */
       return "http://{$_SERVER['SERVER_NAME']}/"
          . Konekt::APP_ROOT_DIR
          . "/"
@@ -181,7 +182,7 @@ class Konektsite_Image_Model_Image
       /* !!! check for $width/$height 0 values should also be considered the same way as NULL
          (int) casting happens when obtaining images sizes!!!
        */
-      $fileurl = strpos($file, Konekt::getRootDir()) === 0 ? substr($file, strlen(Konekt::getRootDir())) : $file;
+      $fileurl = strpos($file, Konekt::app()->getRootDir()) === 0 ? substr($file, strlen(Konekt::app()->getRootDir())) : $file;
       $w = empty($width) ? '' : "&w=$width";
       $h = empty($height)? '' : "&h=$height";
       return file_get_contents($this->_getTimThumbUrl()."?src=$fileurl$w$h&q=95&s=1");      
@@ -296,7 +297,7 @@ class Konektsite_Image_Model_Image
       $entityClass = $this->_getEntityClass($entity);
       if (!$entityClass)
       {
-         error_log("Konektsite/Image: $entity is not a valid Entity");
+         error_log("konekt/cms/image: $entity is not a valid Entity");
          return false;
       }
       
@@ -306,7 +307,7 @@ class Konektsite_Image_Model_Image
       
       if (!$entity->getTable()->hasField("Image_id"))
       {
-         error_log("Konektsite/Image: $entityClass does not have an Image_id field");
+         error_log("konekt/cms/image: $entityClass does not have an Image_id field");
          return false;
       }
       $entity->Image_id = $this->_image->id;
@@ -334,7 +335,7 @@ class Konektsite_Image_Model_Image
       $entityClass = $this->_getEntityClass($entity);
       if (!$entityClass)
       {
-         throw new Exception("Konektsite/Image: Could not create image, $entity is not a valid Entity");
+         throw new Exception("konekt/cms/image: Could not create image, $entity is not a valid Entity");
          return null;
       }
       $relpath = $this->_getEntityDirectory($entityClass, $group);
