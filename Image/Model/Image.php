@@ -3,7 +3,8 @@
  * Image.php contains the implementation of the Image model class ...
  *
  *
- * @package     Konektsite
+ * @category    Konekt
+ * @package     Cms
  * @subpackage  Image
  * @copyright   Copyright (c) 2011 - 2012 Attila Fülöp
  * @author      Attila Fülöp
@@ -13,7 +14,7 @@
  *
  */
 
-class Konektsite_Image_Model_Image
+class Konekt_Cms_Image_Model_Image
 {
    const THUMBNAIL_PREFIX = 'tn_';
    
@@ -209,7 +210,7 @@ class Konektsite_Image_Model_Image
          {
             if (!mkdir($dstdir, 0777, true))
             {
-               error_log("Konekt/Image: Could not create directory $dstdir");
+               error_log("Konekt/Cms/Image: Could not create directory $dstdir");
                return false;
             }
          }
@@ -217,7 +218,7 @@ class Konektsite_Image_Model_Image
       }
       else
       {
-         error_log("Konekt/Image: The resized ($width x $height) image is empty. Source: $srcfile");
+         error_log("Konekt/Cms/Image: The resized ($width x $height) image is empty. Source: $srcfile");
          return false;
       }
       

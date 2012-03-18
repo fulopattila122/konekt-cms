@@ -1,6 +1,6 @@
 <?php
 
-class Konekt_Blog_Helper_Default extends Konekt_Core_Helper_Abstract
+class Konekt_Cms_Blog_Helper_Default extends Konekt_Framework_Core_Helper_Abstract
 {
 
    /**

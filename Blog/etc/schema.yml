@@ -18,7 +18,7 @@ Blog:
          unique: true
          fields: [Name]
          canUpdate: true
-         builder: ['Konekt_Blog_Model_Inflector','urlize']
+         builder: ['Konekt_Cms_Blog_Model_Inflector','urlize']
    relations:
       Language:
          local: Language_id
@@ -59,7 +59,7 @@ Blogpost:
          unique: true
          fields: [Title]
          canUpdate: true
-         builder: ['Konekt_Blog_Model_Inflector','urlize']
+         builder: ['Konekt_Cms_Blog_Model_Inflector','urlize']
       Versionable:
          versionColumn: Version
          className: %CLASS%Version

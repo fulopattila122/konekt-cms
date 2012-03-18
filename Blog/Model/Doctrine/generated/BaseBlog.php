@@ -54,7 +54,7 @@ abstract class BaseBlog extends Doctrine_Record
              'canUpdate' => true,
              'builder' => 
              array(
-              0 => 'Konekt_Blog_Model_Inflector',
+              0 => 'Konekt_Cms_Blog_Model_Inflector',
               1 => 'urlize',
              ),
              ));

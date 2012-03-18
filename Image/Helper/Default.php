@@ -3,7 +3,8 @@
  * Default.php contains the implementation of the Default Image helper class
  *
  *
- * @package     Konektsite
+ * @category    Konekt
+ * @package     Cms
  * @subpackage  Image
  * @copyright   Copyright (c) 2011 - 2012 Attila Fülöp
  * @author      Attila Fülöp
@@ -14,7 +15,7 @@
  */
 
 
-class Konektsite_Image_Helper_Default extends Konekt_Core_Helper_Abstract
+class Konekt_Cms_Image_Helper_Default extends Konekt_Framework_Core_Helper_Abstract
 {
 
 }

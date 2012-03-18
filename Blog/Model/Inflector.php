@@ -1,12 +1,15 @@
 <?php
-
 /**
  * Extended Inflector for replacing accented characters to their unaccented variant
+ * 
+ * @category   Konekt
+ * @package    Cms
+ * @subpackage Blog
  *
  *
  */
 
-class Konekt_Blog_Model_Inflector extends Doctrine_Inflector
+class Konekt_Cms_Blog_Model_Inflector extends Doctrine_Inflector
 {   
     /**
      * Remove any illegal characters, accents, etc.
