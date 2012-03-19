@@ -25,7 +25,7 @@ Blog:
          foreign: id
          foreignAlias: Blogs
 
-BlogpostStatus:
+Contentstatus:
    columns:
       Name: string(128)
 
@@ -37,7 +37,7 @@ Blogpost:
          type: integer
       User_id:
          type: integer
-      BlogpostStatus_id:
+      Contentstatus_id:
          type: integer
       Publishdate:
          type: timestamp
@@ -47,6 +47,8 @@ Blogpost:
          type: boolean
       Menu:
          type: integer
+      Excerpt:
+         type: clob
       Content:
          type: clob      
    indexes:
@@ -65,10 +67,12 @@ Blogpost:
          className: %CLASS%Version
          auditLog: true
    relations:
-      BlogpostStatus:
-         local: BlogpostStatus_id
+      Contentstatus:
+         local: Contentstatus_id
          foreign: id
          foreignAlias: Blogpost
+         #class: Contentstatus
+         #alias: BlogpostStatus
       Blog:
          local: Blog_id
          foreign: id

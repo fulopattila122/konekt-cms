@@ -1,6 +1,6 @@
 # Default data to load to the database
 
-BlogpostStatus:
+Contentstatus:
   bps_draft:
     Name: Draft
   bps_active:

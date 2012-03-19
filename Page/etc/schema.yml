@@ -1,0 +1,61 @@
+#detect_relations: true
+options:
+  type: INNODB
+  collate: utf8_hungarian_ci
+  charset: utf8
+
+Page:
+   columns:
+      Title:
+         type: string(255)
+      Slug:
+         type: string(255)
+      User_id:
+         type: integer
+      Contentstatus_id:
+         type: integer
+      Publishdate:
+         type: timestamp
+      Showauthor:
+         type: boolean
+      Innershowtitle:
+         type: boolean
+      Commentsallowed:
+         type: boolean
+      Menu:
+         type: integer
+      Headerextra:
+         type: clob
+      Content:
+         type: clob
+   actAs:
+      Timestampable:
+      I18n:
+         fields: [Title, Slug, Content]
+      Versionable:
+         versionColumn: Version
+         className: %CLASS%Version
+         auditLog: true
+   relations:
+      PageStatus:
+         local: Contentstatus_id
+         foreign: id
+         foreignAlias: Pages
+         class: Contentstatus
+         alias: PageStatus
+      User:
+         local: User_id
+         foreign: id
+         foreignAlias: Pages
+         class: User
+         alias: UserPages
+
+Comment:
+
+PageComment:
+   inheritance:
+      extends: Comment
+      type: column_aggregation
+      keyField: Entity
+      keyValue: Page
+
