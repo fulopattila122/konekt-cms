@@ -160,12 +160,11 @@ class Konekt_Cms_Image_Model_Image
     */
    protected function _getTimThumbUrl()
    {
-      /** TODO: fix this: It definitely doesn't work with the new layout */
+      /** TODO: If the app dir is moved outside of document root this doesn't work */
+      $uri = str_replace(Konekt::app()->getRootDir(), '',
+                         Konekt::app()->getLibDir($this));
       return "http://{$_SERVER['SERVER_NAME']}/"
-         . Konekt::APP_ROOT_DIR
-         . "/"
-         . Konekt::helper('core')->getMyPackage($this)
-         . Konekt::LIB_ROOT_DIR
+         . $uri
          . "/TimThumb/timthumb.php";
    }
    
