@@ -344,7 +344,7 @@ class Konekt_Cms_Image_Model_Image
             $relpath);
             
       $cachedir = Konekt::helper('core')->fullPathVar(
-         Konekt::app()->getConfigValue('core/cacheDir')
+         Konekt::app()->getConfigValue('core/tmpDir')
          );
       $filename = $this->baseFileName($tmpFile, $originalFileName);
 
