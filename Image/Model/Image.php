@@ -9,7 +9,7 @@
  * @copyright   Copyright (c) 2011 - 2012 Attila Fülöp
  * @author      Attila Fülöp
  * @license     GNU LGPL v3 http://www.opensource.org/licenses/lgpl-3.0.html
- * @version     $Revision-Id$ $Date$
+ * @version     8 2012-05-28
  * @since       2011-12-12
  *
  */
@@ -38,32 +38,6 @@ class Konekt_Cms_Image_Model_Image
       return Konekt::helper('core')->ensurePath($imgdir, false, true);
    }
    
-   /**
-    * Obtains the Image File type based on its first several bytes
-    *
-    * @param array|string $buffer The file data's first 32 bytes (at least)
-    *
-    * @return string The Image file type's extension (bmp, gif, jpg, png)
-    */
-   public function getImageType($buffer)
-   {
-   
-	   if(strlen($buffer)>3 &&  ord($buffer[0])==0xff && ord($buffer[1])==0xd8 &&
-	         ord($buffer[2])==0xff)
-		   return "jpg";
-		   
-	   if(strlen($buffer)>8 &&  ord($buffer[0])==0x89 && ord($buffer[1])==0x50 &&
-	         ord($buffer[2])==0x4e && ord($buffer[3])==0x47 && ord($buffer[4])==0x0d &&
-	         ord($buffer[5])==0x0a && ord($buffer[6])==0x1a && ord($buffer[7])==0x0a)
-		   return "png";
-		   
-	   if(strlen($buffer)>2 &&  $buffer[0]=='G' && $buffer[1]=='I' && $buffer[2]=='F')
-		   return "gif";
-		   
-	   if(strlen($buffer)>1 && $buffer[0]=='B' && $buffer[1]=='M')
-		   return "bmp";
-		   
-   }   
    
    /**
     * Returns the Image base file name based on it's real content and adds unique suffix
@@ -76,7 +50,7 @@ class Konekt_Cms_Image_Model_Image
     public function baseFileName($filename, $originalname)
     {
       $buf = file_get_contents($filename, false, null, -1, 32);
-      $ext = $this->getImageType($buf);
+      $ext = Konekt::helper('core/image')->getImageType($buf);
       
       /* In case the extension could not be obtained use the original extension */
       $ext = empty($ext) ? Konekt::helper('core')->getFileExt($originalname, true) : $ext;
@@ -126,32 +100,6 @@ class Konekt_Cms_Image_Model_Image
       return $result;      
    }
    
-   /**
-    * Returns the Image width & height
-    *
-    * @param string $file The image file name
-    *
-    * @return array In the format array( w => <width>, h => <height> )
-    */
-   public function getImageSize($file)
-   {
-      $result = array('w' => 0, 'h' => 0);
-      $buf = file_get_contents($file);
-      if ($buf === false)
-         return $result;
-      if (!function_exists("imagecreatefromstring"))
-         return $result;
-
-      $image = imagecreatefromstring($buf);
-      if (!$image)
-         return $result;
-
-      $result['w'] = imagesx($image);
-      $result['h'] = imagesy($image);
-      imagedestroy($image);
-      
-      return $result;
-   }
    
    /**
     * Returns the (local) TimThumb URL
