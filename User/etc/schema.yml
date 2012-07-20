@@ -6,27 +6,24 @@ options:
 
 User:
    columns:
-      Email:
-         type: string(255)
-      Password:
-         type: string(511)
-      Firstname:
-         type: string(100)
-      Lastname:
-         type: string(100)
-      Salutation:
-         type: string(50)
-      Openid:
-         type: string(255)
+      Email: string(255)
+      Password: string(511)
+      Firstname: string(100)
+      Lastname: string(100)
+      Phone: string(64)
+      Salutation: string(50)
+      Openid: string(255)
+      Enabled: bool
    indexes:
       Email_index:
          fields: [Email]
          type: unique
+   actAs:
+      Timestampable:
          
 Role:
    columns:
-      Name:
-         type: string(255)
+      Name: string(255)
 
 UserRole:
    columns:
