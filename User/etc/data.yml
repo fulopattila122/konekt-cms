@@ -1,8 +1,8 @@
 User:
-  u1:
-    Firstname: Attila
-    Lastname: Fülöp
-    Email: fulop.attila@yahoo.com
-    Password: 2b06a2251d39e28f8220696766dcd136
-    Salutation: Attila
+   u1:
+      Firstname: Default
+      Lastname: User
+      Email: root@localhost
+      Password: 21232f297a57a5a743894a0e4a801fc3
+      #password is admin
 
