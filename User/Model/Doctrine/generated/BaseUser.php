@@ -9,8 +9,10 @@
  * @property string $Password
  * @property string $Firstname
  * @property string $Lastname
+ * @property string $Phone
  * @property string $Salutation
  * @property string $Openid
+ * @property bool $Enabled
  * @property Doctrine_Collection $UserRole
  * 
  * @package    ##PACKAGE##
@@ -39,6 +41,10 @@ abstract class BaseUser extends Doctrine_Record
              'type' => 'string',
              'length' => '100',
              ));
+        $this->hasColumn('Phone', 'string', 64, array(
+             'type' => 'string',
+             'length' => '64',
+             ));
         $this->hasColumn('Salutation', 'string', 50, array(
              'type' => 'string',
              'length' => '50',
@@ -46,6 +52,9 @@ abstract class BaseUser extends Doctrine_Record
         $this->hasColumn('Openid', 'string', 255, array(
              'type' => 'string',
              'length' => '255',
+             ));
+        $this->hasColumn('Enabled', 'bool', null, array(
+             'type' => 'bool',
              ));
 
 
@@ -57,7 +66,7 @@ abstract class BaseUser extends Doctrine_Record
              'type' => 'unique',
              ));
         $this->option('type', 'INNODB');
-        $this->option('collate', 'utf8_hungarian_ci');
+        $this->option('collate', 'utf8_unicode_ci');
         $this->option('charset', 'utf8');
     }
 
@@ -67,5 +76,8 @@ abstract class BaseUser extends Doctrine_Record
         $this->hasMany('UserRole', array(
              'local' => 'id',
              'foreign' => 'user_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

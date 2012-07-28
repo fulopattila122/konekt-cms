@@ -10,8 +10,10 @@
  * @property integer $User_id
  * @property string $Name
  * @property string $Email
+ * @property string $Useragent
  * @property clob $Content
  * @property boolean $Onhold
+ * @property boolean $Private
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -41,10 +43,17 @@ abstract class BaseComment extends Doctrine_Record
              'type' => 'string',
              'length' => '255',
              ));
+        $this->hasColumn('Useragent', 'string', 128, array(
+             'type' => 'string',
+             'length' => '128',
+             ));
         $this->hasColumn('Content', 'clob', null, array(
              'type' => 'clob',
              ));
         $this->hasColumn('Onhold', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
+        $this->hasColumn('Private', 'boolean', null, array(
              'type' => 'boolean',
              ));
 
@@ -57,7 +66,7 @@ abstract class BaseComment extends Doctrine_Record
              ),
              ));
         $this->option('type', 'INNODB');
-        $this->option('collate', 'utf8_hungarian_ci');
+        $this->option('collate', 'utf8_unicode_ci');
         $this->option('charset', 'utf8');
     }
 
