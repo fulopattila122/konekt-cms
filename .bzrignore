@@ -2,4 +2,4 @@
 *.log
 cache/*
 templates_c/*
-
+.DS_Store

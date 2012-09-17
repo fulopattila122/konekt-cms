@@ -3,6 +3,9 @@ options:
   type: INNODB
   collate: utf8_unicode_ci
   charset: utf8
+
+User:
+   columns:
   
 Comment:
    columns:

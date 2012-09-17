@@ -14,6 +14,7 @@
  * @property clob $Content
  * @property boolean $Onhold
  * @property boolean $Private
+ * @property User $User
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -32,8 +33,9 @@ abstract class BaseComment extends Doctrine_Record
              'type' => 'string',
              'length' => '100',
              ));
-        $this->hasColumn('User_id', 'integer', null, array(
+        $this->hasColumn('User_id', 'integer', 8, array(
              'type' => 'integer',
+             'length' => 8,
              ));
         $this->hasColumn('Name', 'string', 255, array(
              'type' => 'string',
@@ -73,6 +75,10 @@ abstract class BaseComment extends Doctrine_Record
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('User', array(
+             'local' => 'user_id',
+             'foreign' => 'id'));
+
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }
