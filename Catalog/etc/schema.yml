@@ -39,6 +39,10 @@ Productcategory:
          foreign: id
          foreignAlias: Productcategories
 
+Productstate:
+   columns:
+      Name: string(64)
+
 Product:
    columns:
       Name:
@@ -55,6 +59,7 @@ Product:
          type: integer
       Image_id:
          type: integer
+      Productstate_id: integer
    indexes:
       Productcategory_id_index:
          fields: [Productcategory_id]

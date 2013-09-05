@@ -12,7 +12,9 @@
  * @property integer $Rank
  * @property integer $Productcategory_id
  * @property integer $Image_id
+ * @property integer $Productstate_id
  * @property Productcategory $Productcategory
+ * @property Productstate $Productstate
  * @property Doctrine_Collection $Prices
  * 
  * @package    ##PACKAGE##
@@ -49,6 +51,10 @@ abstract class BaseProduct extends Doctrine_Record
         $this->hasColumn('Image_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('Productstate_id', 'integer', 8, array(
+             'type' => 'integer',
+             'length' => 8,
+             ));
 
 
         $this->index('Productcategory_id_index', array(
@@ -58,7 +64,7 @@ abstract class BaseProduct extends Doctrine_Record
              ),
              ));
         $this->option('type', 'INNODB');
-        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('collate', 'utf8_hungarian_ci');
         $this->option('charset', 'utf8');
     }
 
@@ -67,6 +73,10 @@ abstract class BaseProduct extends Doctrine_Record
         parent::setUp();
         $this->hasOne('Productcategory', array(
              'local' => 'Productcategory_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('Productstate', array(
+             'local' => 'productstate_id',
              'foreign' => 'id'));
 
         $this->hasMany('Productprice as Prices', array(
