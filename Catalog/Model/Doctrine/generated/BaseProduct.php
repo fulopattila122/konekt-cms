@@ -78,6 +78,10 @@ abstract class BaseProduct extends Doctrine_Record
         $this->hasOne('Productstate', array(
              'local' => 'productstate_id',
              'foreign' => 'id'));
+        
+        $this->hasOne('Image', array(
+             'local' => 'image_id',
+             'foreign' => 'id'));
 
         $this->hasMany('Productprice as Prices', array(
              'local' => 'id',
