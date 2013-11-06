@@ -16,6 +16,8 @@ Image:
          type: string(192)
       Description:
          type: clob
+      Url:
+        type: string(768)
    actAs:
       Timestampable:
 
