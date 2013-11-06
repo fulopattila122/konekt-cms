@@ -10,6 +10,7 @@
  * @property integer $Rank
  * @property string $Title
  * @property clob $Description
+ * @property string $Url
  * @property Doctrine_Collection $EntityImage
  * 
  * @package    ##PACKAGE##
@@ -39,6 +40,10 @@ abstract class BaseImage extends Doctrine_Record
              ));
         $this->hasColumn('Description', 'clob', null, array(
              'type' => 'clob',
+             ));
+        $this->hasColumn('Url', 'string', 768, array(
+             'type' => 'string',
+             'length' => '768',
              ));
 
         $this->option('type', 'INNODB');

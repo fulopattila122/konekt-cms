@@ -7,6 +7,7 @@
  * 
  * @property string $Name
  * @property string $Naviname
+ * @property string $Imagegroup
  * @property integer $Language_id
  * @property Doctrine_Collection $Blogpost
  * 
@@ -27,6 +28,10 @@ abstract class BaseBlog extends Doctrine_Record
         $this->hasColumn('Naviname', 'string', 128, array(
              'type' => 'string',
              'length' => '128',
+             ));
+        $this->hasColumn('Imagegroup', 'string', 64, array(
+             'type' => 'string',
+             'length' => '64',
              ));
         $this->hasColumn('Language_id', 'integer', null, array(
              'type' => 'integer',

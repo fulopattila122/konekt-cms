@@ -10,6 +10,8 @@ Blog:
          type: string(128)
       Naviname:
          type: string(128)
+      Imagegroup:
+         type: string(64)
       Language_id:
          type: integer
    actAs:
@@ -90,4 +92,3 @@ BlogpostComment:
       type: column_aggregation
       keyField: Entity
       keyValue: Blogpost
-
