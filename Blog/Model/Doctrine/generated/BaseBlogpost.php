@@ -90,7 +90,7 @@ abstract class BaseBlogpost extends Doctrine_Record
              'foreign' => 'id'));
         
         $this->hasOne('Image', array(
-             'local' => 'image_id',
+             'local' => 'Image_id',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();

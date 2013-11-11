@@ -8,10 +8,13 @@ class Version2 extends Doctrine_Migration_Base
     {
         $this->addColumn('blogpost', 'image_id', 'integer', '8', array(
              ));
+        $this->addColumn('blogpost_version', 'image_id', 'integer', '8', array(
+             ));
     }
 
     public function down()
     {
         $this->removeColumn('blogpost', 'image_id');
+        $this->removeColumn('blogpost_version', 'image_id');
     }
 }
