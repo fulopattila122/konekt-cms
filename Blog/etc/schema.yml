@@ -52,7 +52,9 @@ Blogpost:
       Excerpt:
          type: clob
       Content:
-         type: clob      
+         type: clob
+      Image_id:
+         type: integer
    indexes:
       Slug_unique_index:
          fields: [Blog_id, Slug]
@@ -83,6 +85,9 @@ Blogpost:
          local: User_id
          foreign: id
          foreignAlias: Blogpost
+      Image:
+         local: Image_id
+         foreign: id
 
 Comment:
 

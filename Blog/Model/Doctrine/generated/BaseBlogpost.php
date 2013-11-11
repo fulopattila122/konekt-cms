@@ -15,6 +15,7 @@
  * @property integer $Menu
  * @property clob $Excerpt
  * @property clob $Content
+ * @property integer $Image_id
  * @property Contentstatus $Contentstatus
  * @property Blog $Blog
  * 
@@ -59,6 +60,9 @@ abstract class BaseBlogpost extends Doctrine_Record
         $this->hasColumn('Content', 'clob', null, array(
              'type' => 'clob',
              ));
+        $this->hasColumn('Image_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
 
 
         $this->index('Slug_unique_index', array(
@@ -83,6 +87,10 @@ abstract class BaseBlogpost extends Doctrine_Record
 
         $this->hasOne('Blog', array(
              'local' => 'Blog_id',
+             'foreign' => 'id'));
+        
+        $this->hasOne('Image', array(
+             'local' => 'image_id',
              'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
