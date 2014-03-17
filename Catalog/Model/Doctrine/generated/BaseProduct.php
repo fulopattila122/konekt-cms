@@ -16,6 +16,7 @@
  * @property Productcategory $Productcategory
  * @property Productstate $Productstate
  * @property Doctrine_Collection $Prices
+ * @property Doctrine_Collection $ProductVariant
  * 
  * @package    ##PACKAGE##
  * @subpackage ##SUBPACKAGE##
@@ -64,7 +65,7 @@ abstract class BaseProduct extends Doctrine_Record
              ),
              ));
         $this->option('type', 'INNODB');
-        $this->option('collate', 'utf8_hungarian_ci');
+        $this->option('collate', 'utf8_general_ci');
         $this->option('charset', 'utf8');
     }
 
@@ -86,6 +87,10 @@ abstract class BaseProduct extends Doctrine_Record
         $this->hasMany('Productprice as Prices', array(
              'local' => 'id',
              'foreign' => 'Product_id'));
+
+        $this->hasMany('ProductVariant', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $i18n0 = new Doctrine_Template_I18n(array(

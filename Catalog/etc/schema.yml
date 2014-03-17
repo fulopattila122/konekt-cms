@@ -86,6 +86,8 @@ Productprice:
    columns:
       Product_id:
          type: integer
+      ProductVariant_id:
+         type: integer
       Country_id:
          type: integer
       Currency_id:
@@ -110,6 +112,15 @@ Productprice:
          local: Currency_id
          foreign: id
 
+ProductVariant:
+   columns:
+      Product_id:
+         type: integer
+      Name:
+         type: string(100)
+   actAs:
+      I18n:
+         fields: [Name]
 
 #EntityImage:
 
