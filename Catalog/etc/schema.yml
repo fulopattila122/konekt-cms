@@ -55,6 +55,8 @@ Product:
          type: clob
       Rank:
          type: integer
+      HasVariants:
+         type: boolean
       Productcategory_id:
          type: integer
       Image_id:

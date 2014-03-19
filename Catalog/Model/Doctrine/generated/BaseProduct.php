@@ -10,6 +10,7 @@
  * @property string $Shortdescription
  * @property clob $Details
  * @property integer $Rank
+ * @property boolean $HasVariants
  * @property integer $Productcategory_id
  * @property integer $Image_id
  * @property integer $Productstate_id
@@ -46,6 +47,9 @@ abstract class BaseProduct extends Doctrine_Record
         $this->hasColumn('Rank', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('HasVariants', 'boolean', null, array(
+             'type' => 'boolean',
+             ));
         $this->hasColumn('Productcategory_id', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -65,7 +69,7 @@ abstract class BaseProduct extends Doctrine_Record
              ),
              ));
         $this->option('type', 'INNODB');
-        $this->option('collate', 'utf8_general_ci');
+        $this->option('collate', 'utf8_unicode_ci');
         $this->option('charset', 'utf8');
     }
 
