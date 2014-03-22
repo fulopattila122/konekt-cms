@@ -92,7 +92,7 @@ abstract class BaseProduct extends Doctrine_Record
              'local' => 'id',
              'foreign' => 'Product_id'));
 
-        $this->hasMany('ProductVariant', array(
+        $this->hasMany('ProductVariant as Variants', array(
              'local' => 'id',
              'foreign' => 'product_id'));
 

@@ -39,6 +39,10 @@ abstract class BaseProductVariant extends Doctrine_Record
         $this->hasOne('Product', array(
              'local' => 'product_id',
              'foreign' => 'id'));
+        
+        $this->hasMany('Productprice as Prices', array(
+             'local' => 'id',
+             'foreign' => 'ProductVariant_id'));
 
         $i18n0 = new Doctrine_Template_I18n(array(
              'fields' => 
