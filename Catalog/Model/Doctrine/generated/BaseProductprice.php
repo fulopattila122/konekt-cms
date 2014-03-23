@@ -57,6 +57,10 @@ abstract class BaseProductprice extends Doctrine_Record
         $this->hasOne('Product', array(
              'local' => 'Product_id',
              'foreign' => 'id'));
+        
+        $this->hasOne('Currency', array(
+             'local' => 'Currency_id',
+             'foreign' => 'id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
