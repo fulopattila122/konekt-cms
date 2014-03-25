@@ -3,3 +3,4 @@
 cache/*
 templates_c/*
 .DS_Store
+Image/lib/TimThumb/timthumb-config.php
