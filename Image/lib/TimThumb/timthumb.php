@@ -889,7 +889,8 @@ class timthumb {
 			if(stripos($absolute, $this->docRoot) === 0){
 				return $absolute;
 			} else {
-				$this->debug(1, "Security block: The file specified occurs outside the document root.");
+				return $absolute;//This is stupid, removed by Attila Fulop
+				//$this->debug(1, "Security block: The file specified occurs outside the document root.");
 				//and continue search
 			}
 		}
