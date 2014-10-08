@@ -29,6 +29,9 @@ Productcategory:
          type: integer
       Imagegroupname:
          type: string(50)
+      IsActive:
+         type: boolean
+         default: 1
    actAs:
       Timestampable:
       I18n:

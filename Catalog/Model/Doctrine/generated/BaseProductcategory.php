@@ -10,6 +10,7 @@
  * @property integer $Productgroup_id
  * @property integer $Rank
  * @property string $Imagegroupname
+ * @property boolean $IsActive
  * @property Productgroup $Productgroup
  * @property Doctrine_Collection $Products
  * 
@@ -40,6 +41,10 @@ abstract class BaseProductcategory extends Doctrine_Record
         $this->hasColumn('Imagegroupname', 'string', 50, array(
              'type' => 'string',
              'length' => '50',
+             ));
+        $this->hasColumn('IsActive', 'boolean', null, array(
+             'type' => 'boolean',
+             'default' => 1,
              ));
 
         $this->option('type', 'INNODB');
