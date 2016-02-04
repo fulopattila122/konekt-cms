@@ -32,6 +32,8 @@ Productcategory:
       IsActive:
          type: boolean
          default: 1
+      ParentId:
+         type: integer
    actAs:
       Timestampable:
       I18n:

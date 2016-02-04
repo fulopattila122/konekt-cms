@@ -11,6 +11,7 @@
  * @property integer $Rank
  * @property string $Imagegroupname
  * @property boolean $IsActive
+ * @property integer $ParentId
  * @property Productgroup $Productgroup
  * @property Doctrine_Collection $Products
  * 
@@ -45,6 +46,9 @@ abstract class BaseProductcategory extends Doctrine_Record
         $this->hasColumn('IsActive', 'boolean', null, array(
              'type' => 'boolean',
              'default' => 1,
+             ));
+        $this->hasColumn('ParentId', 'integer', null, array(
+             'type' => 'integer',
              ));
 
         $this->option('type', 'INNODB');
