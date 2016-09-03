@@ -50,6 +50,10 @@ abstract class BaseProductcategory extends Doctrine_Record
         $this->hasColumn('ParentId', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('Shippingcategory', 'string', '50', array(
+            'type' => 'string',
+            'length' => '50',
+        ));
 
         $this->option('type', 'INNODB');
         $this->option('collate', 'utf8_unicode_ci');
