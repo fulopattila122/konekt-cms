@@ -63,6 +63,8 @@ Product:
          type: integer
       HasVariants:
          type: boolean
+      IsEndOfLife:
+         type: boolean
       Productcategory_id:
          type: integer
       Image_id:

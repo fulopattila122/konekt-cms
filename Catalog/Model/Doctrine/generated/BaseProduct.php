@@ -50,6 +50,9 @@ abstract class BaseProduct extends Doctrine_Record
         $this->hasColumn('HasVariants', 'boolean', null, array(
              'type' => 'boolean',
              ));
+        $this->hasColumn('IsEndOfLife', 'boolean', null, array(
+            'type' => 'boolean',
+        ));
         $this->hasColumn('Productcategory_id', 'integer', null, array(
              'type' => 'integer',
              ));
